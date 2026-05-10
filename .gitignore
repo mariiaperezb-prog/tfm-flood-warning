@@ -216,3 +216,11 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Datos del TFM
+data/raw/
+data/interim/
+data/processed/
+
+# Variables de entorno con API keys
+.env
