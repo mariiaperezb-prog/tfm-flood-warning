@@ -50,12 +50,24 @@ if __name__ == "__main__":
     out = RAW_DIR / "aemet"
     out.mkdir(parents=True, exist_ok=True)
 
-    # Datos diarios de Valencia durante la DANA de octubre 2024
-    datos = clima_diario(
-        estacion="8414A",
-        ini="2024-10-25T00:00:00UTC",
-        fin="2024-11-05T23:59:59UTC",
-    )
-    f = out / "valencia_dana_2024.json"
-    f.write_text(json.dumps(datos, indent=2, ensure_ascii=False))
-    print(f"Guardado: {len(datos)} registros en {f}")
+    # Tres estaciones representativas de la DANA: ciudad, interior y zona récord
+    estaciones = {
+        "8414A": "Valencia (Manises)",   # litoral, poco afectada
+        "8293X": "Utiel",                # interior, devastada
+        "8175": "Requena",               # interior, muy afectada
+    }
+
+    for codigo, nombre in estaciones.items():
+        print(f"Descargando {nombre} ({codigo})...")
+        try:
+            datos = clima_diario(
+                estacion=codigo,
+                ini="2024-10-25T00:00:00UTC",
+                fin="2024-11-05T23:59:59UTC",
+            )
+            f = out / f"{codigo}_dana_2024.json"
+            f.write_text(json.dumps(datos, indent=2, ensure_ascii=False), encoding="utf-8")
+            print(f"  OK: {len(datos)} registros guardados")
+        except Exception as e:
+            print(f"  ERROR: {e}")
+        time.sleep(2)  # cortesía con la API
