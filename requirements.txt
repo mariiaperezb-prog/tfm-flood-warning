@@ -1,0 +1,17 @@
+pandas
+numpy
+requests
+python-dotenv
+pyspark==3.5.*
+xgboost
+scikit-learn
+geopandas
+folium
+streamlit
+cdsapi
+xarray
+cfgrib
+osmnx
+matplotlib
+seaborn
+jupyter
