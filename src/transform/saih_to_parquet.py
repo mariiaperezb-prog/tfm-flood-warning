@@ -92,7 +92,7 @@ if __name__ == "__main__":
             .reset_index(drop=True))
 
     PROCESSED_DIR.mkdir(parents=True, exist_ok=True)
-    out = PROCESSED_DIR / "saih_dana_2024.parquet"
+    out = PROCESSED_DIR / "saih_historico_2020_2024.parquet"
     df.to_parquet(out, index=False)
 
     print(f"\nGuardado: {out}")
